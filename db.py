@@ -1,6 +1,8 @@
+from maternal_app.models import Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from .models import Base
+
+
 
 DATABASE_URL = "sqlite:///./maternal_health.db"  # local DB file
 

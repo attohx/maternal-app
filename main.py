@@ -1,6 +1,8 @@
+import maternal_app.db
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
+
 
 app = FastAPI(title="Maternal Health Tracker")
 
