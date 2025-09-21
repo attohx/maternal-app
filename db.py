@@ -1,8 +1,5 @@
-from maternal_app.models import Base
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-
-
+from sqlalchemy.orm import sessionmaker, declarative_base
 
 DATABASE_URL = "sqlite:///./maternal_health.db"  # local DB file
 
@@ -11,5 +8,13 @@ engine = create_engine(
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Create all tables
-Base.metadata.create_all(bind=engine)
+# Base class for all models
+Base = declarative_base()
+
+# Dependency FastAPI
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
